@@ -1,5 +1,5 @@
 this.addEventListener('install', function (event) {
-    var staticCache = new Cache();
+    let staticCache = new Cache();
 
     event.waitUntil(Promise.all([
         caches.add('static-v1', staticCache),
@@ -19,7 +19,7 @@ this.addEventListener('install', function (event) {
 
 this.addEventListener('fetch', function (event) {
     event.respondWith(
-        caches.match(event.request).catch(function () {
+        caches.match(event.request).catch(function() {
             return event.default();
         }).catch(function () {
             return caches.match('/fallback.html');

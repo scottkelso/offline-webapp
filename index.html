@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest="manifest.appcache">
+<!-- <html lang="en" manifest="manifest.appcache"> -->
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -177,8 +177,8 @@
   <script src="js/online.js"></script>
 
   <script>
-    success = function() {
-      console.log('CLIENT: service worker registration complete.')
+    success = function(reg) {
+      console.log('CLIENT: service worker registration complete.', reg.scope)
     };
 
     error = function() {
@@ -188,7 +188,7 @@
     // ServiceWorker is a progressive technology. Ignore unsupported browsers
     if ('serviceWorker' in navigator) {
       console.log('CLIENT: service worker registration in progress.');
-      navigator.serviceWorker.register('js/sw.js').then(success, error);
+      navigator.serviceWorker.register('sw.js').then(success, error);
     } else {
       console.log('CLIENT: service worker is not supported.');
     }

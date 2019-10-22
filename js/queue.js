@@ -1,29 +1,25 @@
 localStorage.setItem('queue', JSON.stringify([]));
+ENDPOINT = "https://p9st462m4l.execute-api.eu-west-1.amazonaws.com/prod";
 
 queueForm = function(){
-    var formData = new FormData(document.querySelector('form'));
+    let fname = document.getElementById('fname').value;
+    let lname = document.getElementById('lname').value;
 
-    fname = document.getElementById('fname').value;
-    lname = document.getElementById('lname').value;
-
-    pendingSubs = JSON.parse(localStorage.getItem("queue"));
+    let pendingSubs = JSON.parse(localStorage.getItem("queue"));
     pendingSubs.push({'fname': fname, 'lname': lname});
 
     localStorage.setItem('queue', JSON.stringify(pendingSubs));
 };
 
 submitForm = function(form) {
-    // Add a new document in collection "cities"
-    firebase.firestore().collection("users").add({
-        firstname: form.fname,
-        lastname: form.lname
-    })
-    .then(function() {
-        console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
+    var xhttp = new XMLHttpRequest();
+    xhttp.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            console.log(JSON.stringify(form), " successfully written!");
+        }
     });
+    xhttp.open("POST", ENDPOINT + "/ride", true);
+    xhttp.send(JSON.stringify(form));
 };
 
 submitQueue = function(){

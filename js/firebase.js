@@ -1,4 +1,3 @@
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBrOe7X3W8HDy1dsJaVaNQuysH2ACXDlaI",
     authDomain: "test-9cb62.firebaseapp.com",
@@ -11,5 +10,3 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// firebase.firestore()
-// firebase.firestore.enableLogging(true);
